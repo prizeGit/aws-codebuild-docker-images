@@ -53,12 +53,8 @@ ENV JAVA_VERSION=8 \
     MAVEN_VERSION=3.3.3 \
     MAVEN_HOME="/usr/share/maven" \
     MAVEN_CONFIG="/root/.m2" \
-    GRADLE_VERSION=2.7 \
-    AWS_ACCESS_KEY_ID=foobar \
-    AWS_SECRET_ACCESS_KEY=foobar \
-    AWS_DEFAULT_REGION=eu-west-2
-    ENV SCALA_VERSION=2.11.1
-    ENV SBT_VERSION=1.1.2
+    SCALA_VERSION=2.11.1 \
+    SBT_VERSION=1.1.2
 
 # Install Java
 RUN apt-get update \
@@ -83,7 +79,7 @@ RUN apt-get update \
     && curl -fsSL "https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz" \
         | tar -xzC /usr/share/maven --strip-components=1 \
     && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
-    && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Scala expects this file
 RUN touch /usr/lib/jvm/java-8-openjdk-amd64/release
